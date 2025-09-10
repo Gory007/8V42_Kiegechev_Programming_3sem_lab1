@@ -26,10 +26,10 @@ jobs:
         uses: jwlawson/actions-setup-cmake@v1
 
       - name: Get commit number
-        id: version
         run: |
           COMMITS=$(git rev-list --count HEAD)
           echo "VERSION=1.0.${COMMITS}" >> $GITHUB_ENV
+          echo "Detected version: 1.0.${COMMITS}"
 
       - name: Configure
         run: cmake -S . -B build -DPROJECT_VERSION=${{ env.VERSION }}

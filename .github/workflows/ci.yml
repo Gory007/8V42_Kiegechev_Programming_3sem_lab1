@@ -1,0 +1,38 @@
+name: CI Build
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0   # нужно для подсчёта всех коммитов
+
+      - name: Setup CMake
+        uses: jwlawson/actions-setup-cmake@v1
+
+      - name: Get commit number
+        id: version
+        run: |
+          COMMITS=$(git rev-list --count HEAD)
+          echo "VERSION=1.0.${COMMITS}" >> $GITHUB_ENV
+
+      - name: Configure
+        run: cmake -S . -B build -DPROJECT_VERSION=${{ env.VERSION }}
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Run Program
+        run: ./build/lab1 || .\build\Debug\lab1.exe

@@ -6,6 +6,5 @@
 
 int main() {
     std::cout << "Hello, World! Version " << PROJECT_VERSION << std::endl;
-    std::cout << "Poputka 2" ;
     return 0;
 }

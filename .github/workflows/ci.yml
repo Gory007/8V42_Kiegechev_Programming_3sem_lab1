@@ -13,14 +13,11 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
 
-    env:
-        VERSION: ""
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0   # нужно для подсчёта всех коммитов
+          fetch-depth: 0   # нужно для подсчета всех коммитов
 
       - name: Setup CMake
         uses: jwlawson/actions-setup-cmake@v1
@@ -38,4 +35,4 @@ jobs:
         run: cmake --build build
 
       - name: Run Program
-        run: ./build/lab1 || .\build\Debug\lab1.exe
+        run: ./build/hello || .\build\Debug\hello.exe

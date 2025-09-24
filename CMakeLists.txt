@@ -16,12 +16,12 @@ set(CPACK_PACKAGE_NAME "lab1")
 set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
 
 if(WIN32)
-set(CPACK_GENERATOR "ZIP")
+    set(CPACK_GENERATOR "ZIP")
 endif()
 
 if(UNIX AND NOT APPLE)
-set(CPACK_GENERATOR "DEB")
-set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Ivan Obuhov <vanushabrend@gmail.com>")
+    set(CPACK_GENERATOR "DEB")
+    set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Kiegechev Pavel <kiegechev09@gmail.com>")
 endif()
 
 install(TARGETS lab1 DESTINATION bin)

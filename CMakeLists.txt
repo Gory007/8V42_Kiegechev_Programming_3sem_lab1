@@ -1,11 +1,20 @@
 cmake_minimum_required(VERSION 3.10.0)
 project(lab1 VERSION 0.1.0 LANGUAGES C CXX)
 
-if(DEFINED VERSION_PROJECT)
-    add_definitions(-DVERSION_PROJECT="${VERSION_PROJECT}")
+find_package(Git QUIET)
+
+if(GIT_FOUND)
+    execute_process(
+        COMMAND ${GIT_EXECUTABLE} rev-list --count HEAD
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        OUTPUT_VARIABLE GIT_COMMIT_COUNT
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
 else()
-    add_definitions(-DVERSION_PROJECT="0")
+    set(GIT_COMMIT_COUNT "0")
 endif()
+
+add_definitions(-DVERSION_PROJECT="0.1.${GIT_COMMIT_COUNT}")
 
 add_executable(lab1 main.cpp)
 

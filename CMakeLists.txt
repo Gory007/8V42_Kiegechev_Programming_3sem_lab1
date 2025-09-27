@@ -6,12 +6,11 @@ find_package(Git QUIET)
 if(GIT_FOUND)
     execute_process(
         COMMAND ${GIT_EXECUTABLE} rev-list --count HEAD
+
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
         OUTPUT_VARIABLE GIT_COMMIT_COUNT
         OUTPUT_STRIP_TRAILING_WHITESPACE
     )
-
-    #math(EXPR GIT_COMMIT_COUNT "${GIT_COMMIT_COUNT} + 1")
 
 else()
     set(GIT_COMMIT_COUNT "0")

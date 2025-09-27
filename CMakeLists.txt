@@ -19,8 +19,15 @@ endif()
 add_definitions(-DVERSION_PROJECT=${GIT_COMMIT_COUNT})
 
 configure_file(version.h.in version.h)
+
 add_executable(lab1 main.cpp)
+
 target_include_directories(lab1 PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+
+add_custom_command(TARGET lab1 PRE_BUILD
+    COMMAND ${CMAKE_COMMAND} -DGIT_EXECUTABLE=${GIT_EXECUTABLE} -DCMAKE_SOURCE_DIR=${CMAKE_SOURCE_DIR} -P ${CMAKE_SOURCE_DIR}/update_version.cmake
+    COMMENT "Updating version"
+)
 
 
 

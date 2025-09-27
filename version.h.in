@@ -1,0 +1,2 @@
+#pragma once
+#define VERSION_PROJECT @GIT_COMMIT_COUNT@

@@ -11,6 +11,8 @@ if(GIT_FOUND)
         OUTPUT_STRIP_TRAILING_WHITESPACE
     )
 
+    #math(EXPR GIT_COMMIT_COUNT "${GIT_COMMIT_COUNT} + 1")
+
 else()
     set(GIT_COMMIT_COUNT "0")
 endif()

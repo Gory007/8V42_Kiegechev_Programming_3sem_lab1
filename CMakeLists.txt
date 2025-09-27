@@ -17,7 +17,7 @@ else()
     set(GIT_COMMIT_COUNT "0")
 endif()
 
-add_definitions(-DVERSION_PROJECT="0.1.${GIT_COMMIT_COUNT}")
+add_definitions(-DVERSION_PROJECT=${GIT_COMMIT_COUNT})
 
 add_executable(lab1 main.cpp)
 

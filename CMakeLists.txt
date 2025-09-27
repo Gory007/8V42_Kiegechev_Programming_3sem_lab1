@@ -20,11 +20,11 @@ endif()
 
 add_definitions(-DVERSION_PROJECT=${GIT_COMMIT_COUNT})
 
-configure_file(version.h.in version.h)
-
 add_executable(lab1 main.cpp)
 
+
 target_include_directories(lab1 PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+
 
 set(CPACK_PACKAGE_NAME "lab1")
 

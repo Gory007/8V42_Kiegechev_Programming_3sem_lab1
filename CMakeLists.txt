@@ -5,7 +5,7 @@ find_package(Git QUIET)
 
 if(GIT_FOUND)
     execute_process(
-        COMMAND ${GIT_EXECUTABLE} rev-list --count HEAD
+        COMMAND ${GIT_EXECUTABLE} rev-list --count main
 
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
         OUTPUT_VARIABLE GIT_COMMIT_COUNT

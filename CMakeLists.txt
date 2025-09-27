@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.10.0)
 project(lab1 VERSION 0.1.0 LANGUAGES C CXX)
 
+set_property(DIRECTORY . PROPERTY CMAKE_CONFIGURE_DEPENDS main.cpp)
+
 find_package(Git QUIET)
 
 if(GIT_FOUND)
@@ -23,13 +25,6 @@ configure_file(version.h.in version.h)
 add_executable(lab1 main.cpp)
 
 target_include_directories(lab1 PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
-
-add_custom_command(TARGET lab1 PRE_BUILD
-    COMMAND ${CMAKE_COMMAND} -DGIT_EXECUTABLE=${GIT_EXECUTABLE} -DCMAKE_SOURCE_DIR=${CMAKE_SOURCE_DIR} -P ${CMAKE_SOURCE_DIR}/update_version.cmake
-    COMMENT "Updating version"
-)
-
-
 
 set(CPACK_PACKAGE_NAME "lab1")
 
